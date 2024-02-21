@@ -5,13 +5,30 @@ import { NavigationContainer } from '@react-navigation/native'
 import Home from '../Screens/Home'
 import ItemListCategories from '../Screens/ItemListCategories'
 import ItemDetail from '../Screens/ItemDetail'
+import Header from '../Components/Header'
 
 const Stack = createNativeStackNavigator()
 
 const Navigator = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+            initialRouteName='Home'
+            screenOptions={
+                ({route, navigation}) => (
+                    {
+                        header: () => {
+                            return <Header title={
+                                route.name === 'Home' ? 'Categories':
+                                route.name === 'ItemListCategory' ? route.params.category:
+                                'Detail'
+                            }
+                            navigation={navigation}/>
+                        }
+                    }
+                )
+            }
+        >
             <Stack.Screen
                 name='Home'
                 component={Home}

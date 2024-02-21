@@ -3,18 +3,14 @@ import React from 'react'
 import { colors } from '../Global/colors'
 import { Entypo } from '@expo/vector-icons'
 
-const Header = ({title = 'Hello!', setCategorySelected}) => {
-
-  handleHomeButton = () => {
-    setCategorySelected('')
-  }
+const Header = ({title = 'Hello!', navigation}) => {
 
   
   return (
     <>
         <StatusBar backgroundColor={colors.green2}/>
         <View style={styles.container}>
-          <Pressable onPress={handleHomeButton}>
+          <Pressable onPress={() => navigation.navigate('Home')}>
             <Entypo style={styles.home} name='home' size={30} color="white"/>
           </Pressable>
           <View style={styles.containerText}>

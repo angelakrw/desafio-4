@@ -1,14 +1,15 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Header from '../Components/Header'
 import ProductItem from '../Components/ProductItem'
 import allProducts from '../Data/products.json'
 import Search from '../Components/Search'
 
-const ItemListCategories = ({category, setCategorySelected}) => {
+const ItemListCategories = ({route, navigation}) => {
 
     const [products, setProducts] = useState([])
     const [keyword, setKeyword] = useState('')
+
+    const {category} = route.params
 
     useEffect(() => {
         if (category) {
@@ -23,10 +24,6 @@ const ItemListCategories = ({category, setCategorySelected}) => {
 
     return (
         <>
-            <Header 
-                title={category || "Products"}
-                setCategorySelected={setCategorySelected}      
-            />
             <Search onSearch={setKeyword} />
             <View style={styles.container}>
                 <FlatList
